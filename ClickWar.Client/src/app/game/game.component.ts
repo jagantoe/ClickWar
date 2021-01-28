@@ -14,6 +14,7 @@ export class GameComponent implements OnInit {
 
   gameState$ = this.signalrService.gameState$.pipe(
     map(state => ({
+      winner: state.winner,
       redCastle: state.redCastle,
       redFighters: state.fighters.filter(fighter => fighter.team == "red"),
       blueCastle: state.blueCastle,

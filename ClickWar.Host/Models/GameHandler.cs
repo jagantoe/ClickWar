@@ -28,31 +28,38 @@ namespace ClickWar.Host.Models
             if (fighter != null) Fighters.Remove(fighter);
         }
 
-        public bool Attack(string connectionId)
+        public void Attack(string connectionId)
         {
             var fighter = Fighters.SingleOrDefault(_ => _.ConnectionId == connectionId);
             if (fighter != null)
             {
                 if (fighter.Team == "red")
                 {
-                    return BlueCastle.TakeDamage(fighter.Power);
+                    BlueCastle.TakeDamage(fighter.Power);
                 }
                 else if (fighter.Team == "blue")
                 {
-                    return RedCastle.TakeDamage(fighter.Power);
+                    RedCastle.TakeDamage(fighter.Power);
                 }
             }
-            return false;
         }
 
         public GameState GetGameState()
         {
             return new GameState()
             {
+                Winner = GetWinner(),
                 RedCastle = RedCastle,
                 BlueCastle = BlueCastle,
                 Fighters = Fighters
             };
+        }
+
+        public string GetWinner()
+        {
+            if (BlueCastle.Destroyed) return "red";
+            else if (RedCastle.Destroyed) return "blue";
+            return null;
         }
     }
 }

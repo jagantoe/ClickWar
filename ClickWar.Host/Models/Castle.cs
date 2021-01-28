@@ -6,11 +6,10 @@
 
         public bool Destroyed => Health == 0;
 
-        public bool TakeDamage(int damage)
+        public void TakeDamage(int damage)
         {
             Health -= damage;
             if (Health < 0) Health = 0;
-            return Destroyed;
         }
     }
 }

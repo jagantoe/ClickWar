@@ -23,12 +23,8 @@ namespace ClickWar.Host.Hubs
 
         public async Task Attack()
         {
-            var destroyed = _gameHandler.Attack(Context.ConnectionId);
+            _gameHandler.Attack(Context.ConnectionId);
             await Clients.All.SendAsync("GetGameState", _gameHandler.GetGameState());
-            if (destroyed)
-            {
-                await Clients.All.SendAsync("GameOver");
-            }
         }
 
         public override Task OnDisconnectedAsync(Exception exception)

@@ -1,26 +1,34 @@
 <div class="d-flex" class="h-100 d-flex" *ngIf="gameState$ | async as gameState">
-    <div id="red" class="d-flex flex-grow-1">
-        <div id="red-fighters" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-            <p *ngFor="let fighter of gameState.redFighters" style="color: red;">
-                {{fighter.name}}
-            </p>
+    <ng-container *ngIf="!gameState.winner">
+        <div id="red" class="d-flex flex-grow-1">
+            <div id="red-fighters" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+                <p *ngFor="let fighter of gameState.redFighters" style="color: red;">
+                    {{fighter.name}}
+                </p>
+            </div>
+            <div id="red-castle" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center"
+                (click)="attack()" style="background-color: orangered;">
+                <h1>Red Castle:</h1>
+                <h1>{{gameState.redCastle.health}}</h1>
+            </div>
         </div>
-        <div id="red-castle" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center"
-            (click)="attack()" style="background-color: orangered;">
-            <h1>Red Castle:</h1>
-            <h1>{{gameState.redCastle.health}}</h1>
+        <div id="blue" class="d-flex flex-grow-1">
+            <div id="blue-castle" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center"
+                (click)="attack()" style="background-color: skyblue;">
+                <h1>Blue Castle:</h1>
+                <h1>{{gameState.blueCastle.health}}</h1>
+            </div>
+            <div id="blue-fighters" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
+                <p *ngFor="let fighter of gameState.blueFighters" style="color: blue;">
+                    {{fighter.name}}
+                </p>
+            </div>
         </div>
-    </div>
-    <div id="blue" class="d-flex flex-grow-1">
-        <div id="blue-castle" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center"
-            (click)="attack()" style="background-color: skyblue;">
-            <h1>Blue Castle:</h1>
-            <h1>{{gameState.blueCastle.health}}</h1>
+    </ng-container>
+    <ng-container *ngIf="gameState.winner">
+        <div class="w-100 h-100 d-flex justify-content-center align-items-center"
+            [style.background]="gameState.winner == 'red'? 'red': 'blue'">
+            <h1 style="color:white;font-size: xxx-large;text-transform: uppercase;">{{gameState.winner}} team won</h1>
         </div>
-        <div id="blue-fighters" class="d-flex flex-column flex-grow-1 justify-content-center align-items-center">
-            <p *ngFor="let fighter of gameState.blueFighters" style="color: blue;">
-                {{fighter.name}}
-            </p>
-        </div>
-    </div>
+    </ng-container>
 </div>
