@@ -1,0 +1,21 @@
+<div class="h-100 d-flex flex-column justify-content-center align-items-center">
+    <h1>Welcome</h1>
+    <p>Choose a name and a team to fight for.</p>
+
+    <form [formGroup]="loginForm" class="d-flex flex-column">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Team</mat-label>
+            <mat-select formControlName="team" matNativeControl>
+                <mat-option value="red">RED</mat-option>
+                <mat-option value="blue">BLUE</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <button type="button" class="btn btn-primary" (click)="Start()">Join Battle</button>
+</div>
