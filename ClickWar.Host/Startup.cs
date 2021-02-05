@@ -25,6 +25,7 @@ namespace ClickWar.Host
             services.AddControllers();
 
             services.AddSingleton<GameHandler>();
+            services.AddSingleton<ChatRoom>();
             services.AddSignalR(options => options.EnableDetailedErrors = true);
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -59,6 +60,7 @@ namespace ClickWar.Host
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<GameHub>("/game");
+                endpoints.MapHub<ChatHub>("/chat");
             });
 
             app.Run(async (context) =>

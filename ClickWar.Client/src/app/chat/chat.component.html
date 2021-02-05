@@ -1,0 +1,16 @@
+<form [formGroup]="loginForm" class="d-flex justify-content-center">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Message</mat-label>
+        <input formControlName="message" matInput>
+    </mat-form-field>
+
+    <button type="button" class="btn btn-primary" (click)="SendMessage()">Send</button>
+</form>
+<div class="d-flex flex-column text-center" *ngIf="messages$ | async as messages">
+    <p *ngFor="let message of messages"><span style="font-weight: bold;">{{message.name}}:</span>{{message.message}}</p>
+</div>

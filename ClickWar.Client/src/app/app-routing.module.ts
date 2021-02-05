@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ChatComponent } from './chat/chat.component';
 import { GameGuard } from './game.guard';
 import { GameComponent } from './game/game.component';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +14,10 @@ const routes: Routes = [
     canActivate: [GameGuard],
     path: "battlefield",
     component: GameComponent
+  },
+  {
+    path: "chatroom",
+    component: ChatComponent
   }
 ];
 
