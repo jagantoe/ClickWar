@@ -1,0 +1,37 @@
+<form [formGroup]="meetingForm" class="d-flex justify-content-center">
+
+    <mat-form-field appearance="outline">
+        <mat-label>Meeting ID</mat-label>
+        <input formControlName="meeting" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Role</mat-label>
+        <input formControlName="role" matInput>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Device</mat-label>
+        <input formControlName="device" matInput>
+    </mat-form-field>
+
+    <button type="button" class="btn btn-primary" (click)="joinMeeting()">Send</button>
+</form>
+
+
+<ng-container *ngIf="meetingState$ | async as meeting">
+
+    <form [formGroup]="textForm" class="d-flex justify-content-center">
+
+        <mat-form-field appearance="outline">
+            <mat-label>Text</mat-label>
+            <input formControlName="text" matInput>
+        </mat-form-field>
+        <button type="button" class="btn btn-primary" (click)="addText()">Send</button>
+    </form>
+
+    <h1>Meeting: {{meeting.id}}</h1>
+    <p>
+        {{meeting.meetingText}}
+    </p>
+</ng-container>

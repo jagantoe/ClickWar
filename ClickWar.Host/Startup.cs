@@ -1,5 +1,6 @@
 using ClickWar.Host.Hubs;
 using ClickWar.Host.Models;
+using ClickWar.Host.Models.Meeting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,8 @@ namespace ClickWar.Host
 
             services.AddSingleton<GameHandler>();
             services.AddSingleton<ChatRoom>();
+            services.AddSingleton<MeetingManager>();
+
             services.AddSignalR(options => options.EnableDetailedErrors = true);
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -59,8 +62,9 @@ namespace ClickWar.Host
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<GameHub>("/game");
-                endpoints.MapHub<ChatHub>("/chat");
+                endpoints.MapHub<GameHub>("/hubs/game");
+                endpoints.MapHub<ChatHub>("/hubs/chat");
+                endpoints.MapHub<MeetingHub>("/hubs/meeting");
             });
 
             app.Run(async (context) =>

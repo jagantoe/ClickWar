@@ -4,6 +4,7 @@ import { ChatComponent } from './chat/chat.component';
 import { GameGuard } from './game.guard';
 import { GameComponent } from './game/game.component';
 import { HomeComponent } from './home/home.component';
+import { MeetingComponent } from './meeting/meeting.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: "chatroom",
     component: ChatComponent
+  },
+  {
+    path: "meeting",
+    component: MeetingComponent
   }
 ];
 

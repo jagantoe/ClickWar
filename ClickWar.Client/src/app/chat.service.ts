@@ -8,7 +8,7 @@ import { shareReplay, take, tap } from 'rxjs/operators';
 })
 export class ChatService {
 
-  private hubConnection: HubConnection = new HubConnectionBuilder().withUrl('/chat').build();
+  private hubConnection: HubConnection = new HubConnectionBuilder().withUrl('/hubs/chat').build();
 
   constructor() {
     this.startConnection();

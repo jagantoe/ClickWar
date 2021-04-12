@@ -9,7 +9,7 @@ import { GameState } from './interfaces/gamestate';
 })
 export class SignalrService {
 
-  private hubConnection: HubConnection = new HubConnectionBuilder().withUrl('/game').build();
+  private hubConnection: HubConnection = new HubConnectionBuilder().withUrl('/hubs/game').build();
 
   constructor(private router: Router) {
     this.startConnection();
